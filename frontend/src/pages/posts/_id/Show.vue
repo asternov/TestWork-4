@@ -2,9 +2,6 @@
   <q-page padding>
     <div class="column">
       <div class="row">
-        <h5 class="text-h5 text-white q-my-md">Company & Co</h5>
-      </div>
-      <div class="row">
         <q-card square bordered class="q-pa-lg shadow-1">
           <q-card-section>
             <q-form class="q-gutter-md">
@@ -37,15 +34,20 @@ export default {
     }
   },
   methods: {
-    async getPosts () {
-      var posts = await api.get()
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      this.posts = posts.data
+    async getPost () {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
+      this.id = this.$route.params.id
+      // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+      var response = await api.get('posts/' + this.id)
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
+      this.title = response.data.title
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
+      this.body = response.data.body
     }
   },
   mounted: function () {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    this.getPosts()
+    this.getPost()
   }
 }
 </script>

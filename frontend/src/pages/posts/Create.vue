@@ -10,11 +10,8 @@
             </q-form>
           </q-card-section>
           <q-card-actions class="q-px-md">
-            <q-btn unelevated color="light-green-7" size="lg" class="full-width" label="Create" />
+            <q-btn unelevated color="light-green-7" size="lg" class="full-width" label="Create" v-on:click="create" />
           </q-card-actions>
-          <q-card-section class="text-center q-pa-none">
-            <p class="text-grey-6">Not reigistered? Created an Account</p>
-          </q-card-section>
         </q-card>
       </div>
     </div>
@@ -37,6 +34,20 @@ export default {
       var posts = await api.get()
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       this.posts = posts.data
+    },
+    async create () {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
+      this.id = this.$route.params.id
+      const data = {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        id: this.id,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        title: this.title,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        body: this.body
+      }
+      // eslint-disable-next-line no-unused-vars,@typescript-eslint/restrict-plus-operands
+      var response = await api.post('posts/' + this.id, data)
     }
   },
   mounted: function () {
