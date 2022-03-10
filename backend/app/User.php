@@ -8,7 +8,6 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 class User extends Authenticatable implements AuthenticatableContract, CanResetPasswordContract
 {
-  // use Authenticatable, CanResetPassword;
 
   /**
    * The database table used by the model.
@@ -31,33 +30,30 @@ class User extends Authenticatable implements AuthenticatableContract, CanResetP
    */
   protected $hidden = ['password', 'remember_token'];
 
-  // user has many posts
-  public function posts()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function posts(): \Illuminate\Database\Eloquent\Relations\HasMany
   {
     return $this->hasMany('App\Posts', 'author_id');
   }
 
-  // user has many comments
-  public function comments()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments(): \Illuminate\Database\Eloquent\Relations\HasMany
   {
     return $this->hasMany('App\Comments', 'from_user');
   }
 
-  public function can_post()
+  public function getCanPostAttribute()
   {
     $role = $this->role;
-    if ($role == 'author' || $role == 'admin') {
-      return true;
-    }
-    return false;
+    return $role == 'author' || $role == 'admin';
   }
 
-  public function is_admin()
+  public function getIsAdminAttribute()
   {
-    $role = $this->role;
-    if ($role == 'admin') {
-      return true;
-    }
-    return false;
+    return $this->role == 'admin';
   }
 }

@@ -3,7 +3,7 @@
     clickable
     tag="a"
     target="_blank"
-    :href="link"
+    @click="$router.replace(link)"
   >
     <q-item-section
       v-if="icon"

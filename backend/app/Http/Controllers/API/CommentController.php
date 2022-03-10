@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Comments;
 use App\Http\Controllers\Controller;
 
+use http\Env\Response;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -33,18 +35,16 @@ class CommentController extends Controller
   /**
    * Store a newly created resource in storage.
    *
-   * @return Response
+   * @return \Illuminate\Http\JsonResponse
    */
   public function store(Request $request)
   {
     //on_post, from_user, body
+    $data = $request->all();
     $input['from_user'] = $request->user()->id;
-    $input['on_post'] = $request->input('on_post');
-    $input['body'] = $request->input('body');
-    $slug = $request->input('slug');
-    Comments::create($input);
+    $comment = Comment::create($data);
 
-    return redirect($slug)->with('message', 'Comment published');
+    return response()->json($comment);
   }
 
   /**

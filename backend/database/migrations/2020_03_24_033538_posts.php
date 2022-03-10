@@ -34,7 +34,6 @@ class Posts extends Migration
    */
   public function down()
   {
-    // drop blog table
     Schema::drop('posts');
   }
 }

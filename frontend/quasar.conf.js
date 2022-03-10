@@ -55,7 +55,9 @@ module.exports = configure(function (ctx) {
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
       vueRouterMode: 'hash', // available values: 'hash', 'history'
-
+      env: {
+        API: 'http://api.dom/TestWork-4/backend/public/'
+      },
       // transpile: false,
       // publicPath: '/',
 
@@ -146,9 +148,9 @@ module.exports = configure(function (ctx) {
       },
 
       manifest: {
-        name: 'Quasar App',
-        short_name: 'Quasar App',
-        description: 'A Quasar Framework app',
+        name: 'Laravel blog',
+        short_name: 'Laravel blog',
+        description: 'Laravel blog',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
