@@ -14,5 +14,7 @@
 - - mysql
 - ##### frontend: 
 - - vue 3.0
-- - quasar 8
+- - quasar
     
+Author:
+- [Andrew](https://asternov.ru)
