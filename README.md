@@ -1,4 +1,4 @@
-# TestWork 4 Simple laravel Blog SPA SSR app
+# TestWork 4 Simple laravel Blog SPA SSR App
 
 ### functions:
 - posts:
@@ -6,3 +6,13 @@
 - - read
 - - edit
 - - delete
+    
+### tech stack:
+- ##### backend:
+- - PHP 8
+- - laravel 8
+- - mysql
+- ##### frontend: 
+- - vue 3.0
+- - quasar 8
+    
